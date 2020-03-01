@@ -4,6 +4,7 @@ const Recommend = () => import('views/recommend/Recommend')
 const Singer = () => import('views/singer/Singer')
 const Rank = () => import('views/rank/Rank')
 const Search = () => import('views/search/Search')
+const SingerDetail = () => import('views/singerDetail/SingerDetail')
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,10 @@ const routes = [
   {
     path: '/search',
     component: Search
+  },
+  {
+    path: '/singerDetail/:id',
+    component: SingerDetail
   }
 ]
 

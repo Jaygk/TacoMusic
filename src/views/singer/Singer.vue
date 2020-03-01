@@ -21,8 +21,9 @@
         // console.log(this.singerList)
       },
 
-      selectSinger(data) {
-        console.log(data.name)
+      selectSinger(id) {
+        // console.log(data.name)
+        this.$router.push(`/singerDetail/${id}`)
       }
     },
     created() {

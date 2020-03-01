@@ -61,6 +61,7 @@
 import Scroll from 'components/scroll/Scroll'
 import Loading from 'components/loading/Loading'
 import { getData } from 'assets/js/dom'
+import { mapMutations } from 'vuex'
 
 const TITLE_HEIGHT = 30
 const ANCHOR_HEIGHT = 18
@@ -104,9 +105,13 @@ export default {
     this.touch = {}
     this.listHeight = []
   },
+  activated() {
+    this.refresh()
+  },
   methods: {
     selectItem(item) {
-      this.$emit('select', item)
+      this.setSinger(item)
+      this.$emit('select', item.id)
     },
     onShortcutTouchStart(e) {
       let anchorIndex = getData(e.target, 'index')
@@ -152,7 +157,11 @@ export default {
       }
       this.scrollY = -this.listHeight[index]
       this.$refs.listView.scrollToElement(this.$refs.listGroup[index], 0)
-    }
+    },
+
+    ...mapMutations({
+      setSinger: 'SET_SINGER'
+    })
   },
   watch: {
     data() {
