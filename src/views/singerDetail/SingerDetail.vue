@@ -29,13 +29,14 @@ export default {
   },
   methods: {
     async _getDetail() {
+      this.singerDetail = []
       if (!this.singer.id) {
         this.$router.push('/singer')
         return
       }
       const res = await getSingerDetail(this.singer.id)
       // console.log(res)
-      this.singerDetail = getFinallyDetail(res.songs)
+      this.singerDetail = await getFinallyDetail(res.songs)
       // console.log(this.singerDetail)
     }
   },
