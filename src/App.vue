@@ -1,30 +1,34 @@
 <template>
   <div id="app">
-    <m-header/>
+    <m-header />
 
-    <tab/>
+    <tab />
 
     <keep-alive>
-      <router-view/>
+      <router-view />
     </keep-alive>
+
+    <player />
   </div>
 </template>
 
 <script>
 import MHeader from 'components/mHeader/MHeader'
 import Tab from 'components/tab/Tab'
+import Player from 'components/player/Player'
 
 export default {
   components: {
     MHeader,
-    Tab
+    Tab,
+    Player
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-  @import "~assets/stylus/variable.styl"
+@import "~assets/stylus/variable.styl"
 
-  #app
-    color: $color-theme
+#app
+  color: $color-theme
 </style>
