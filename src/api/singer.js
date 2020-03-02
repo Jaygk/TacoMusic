@@ -50,11 +50,22 @@ export function getSingerDetail(id) {
   })
 }
 
-export function getFinallyDetail(arr) {
+function getSongUrl(id) {
+  return request({
+    url: '/song/url',
+    params: {
+      id
+    }
+  })
+}
+
+export async function getFinallyDetail(arr) {
   let list = []
 
   for (let item of arr) {
     let obj = {}
+    const res = await getSongUrl(item.id)
+    obj.songUrl = res.data[0].url
     obj.name = item.name
     obj.id = item.id
     obj.artist = item.ar[0].name
