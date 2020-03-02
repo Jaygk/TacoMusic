@@ -1,8 +1,6 @@
 <template>
   <transition name="slide">
-    <div class="singer-detail">
-      <music-list :title="title" :bg-image="bgImage" :songs="singerDetail" />
-    </div>
+    <music-list :title="title" :bg-image="bgImage" :songs="singerDetail" />
   </transition>
 </template>
 <script>
@@ -38,7 +36,7 @@ export default {
       const res = await getSingerDetail(this.singer.id)
       // console.log(res)
       this.singerDetail = getFinallyDetail(res.songs)
-      console.log(this.singerDetail)
+      // console.log(this.singerDetail)
     }
   },
   components: {
@@ -49,16 +47,6 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~assets/stylus/variable'
-
-.singer-detail
-  position: fixed
-  z-index: 100
-  top: 0
-  left: 0
-  right: 0
-  bottom: 0
-  background: $color-background
-
 .slide-enter-active, .slide-leave-active
   transition: all 0.3s
 
