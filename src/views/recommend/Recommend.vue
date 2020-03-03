@@ -51,10 +51,16 @@ export default {
       this.hotList = res.playlists
     },
 
+    refresh() {
+      this.$nextTick(() => {
+        this.$refs.scroll.refresh()
+      })
+    },
+
     // 监听轮播图图片加载
     loadImage() {
       if (!this.checkLoaded) {
-        this.$refs.scroll.refresh()
+        this.refresh()
         this.checkLoaded = true
       }
     }
@@ -62,6 +68,9 @@ export default {
   created() {
     this._getBannerList()
     this._getHotList()
+  },
+  activated() {
+    this.refresh()
   }
 }
 </script>
