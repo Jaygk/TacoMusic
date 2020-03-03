@@ -7,6 +7,7 @@ import fastclick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
 
 Vue.config.productionTip = false
+Vue.prototype.$bus = new Vue()
 import 'assets/stylus/index.styl'
 
 fastclick.attach(document.body)
