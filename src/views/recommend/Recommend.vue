@@ -1,5 +1,5 @@
 <template>
-  <div class="recommend">
+  <div class="recommend" ref="recommend" :style="`bottom: ${bottom}`">
     <scroll ref="scroll" class="recommend-content" :data="hotList">
       <div>
         <!-- 轮播图 -->
@@ -25,12 +25,20 @@ import Loading from 'components/loading/Loading'
 
 import { getBanner, getHotList } from 'api/recommend'
 
+import {mapGetters} from 'vuex'
+
 export default {
   data() {
     return {
       bannerList: [],
       hotList: []
     }
+  },
+  computed: {
+    bottom() {
+      return this.playlist.length > 0 ? '60px' : '0'
+    },
+    ...mapGetters(['playlist'])
   },
   components: {
     Swiper,
@@ -81,7 +89,6 @@ export default {
     position: fixed
     width: 100%
     top: 88px
-    bottom: 0
     .recommend-content
       height: 100%
       overflow: hidden

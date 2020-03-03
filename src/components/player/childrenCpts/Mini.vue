@@ -15,7 +15,9 @@
         <p class="desc" v-html="currentSong.artist"></p>
       </div>
       <div class="control" @click.stop="togglePlaying">
-        <i :class="miniIcon"></i>
+        <progress-circle :radius="32" :percent="$parent.$children[0].$children[1].percent">
+          <i :class="miniIcon" class="icon-mini"></i>
+        </progress-circle>
       </div>
       <div class="control">
         <i class="icon-playlist"></i>
@@ -26,6 +28,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+import ProgressCircle from 'components/progressCircle/ProgressCircle'
 
 export default {
   computed: {
@@ -48,6 +51,9 @@ export default {
       setFullScreen: 'SET_FULL_SCREEN',
       setPlayingState: 'SET_PLAYING_STATE'
     })
+  },
+  components: {
+    ProgressCircle
   }
 }
 </script>
