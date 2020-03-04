@@ -29,5 +29,9 @@ export default {
 
   currentSong(state) {
     return state.playlist[state.currentIndex] || {}
+  },
+
+  songUrl(state) {
+    return state.songUrl
   }
 }

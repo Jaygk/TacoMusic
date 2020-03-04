@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 import ProgressBar from 'components/progressBar/ProgressBar'
 import { playMode } from 'assets/js/config'
 import { shuffle } from 'assets/js/utils'
@@ -59,7 +59,14 @@ export default {
         ? 'icon-loop'
         : 'icon-random'
     },
-    ...mapGetters(['playlist', 'playing', 'currentIndex', 'mode', 'sequenceList', 'currentSong'])
+    ...mapGetters([
+      'playlist',
+      'playing',
+      'currentIndex',
+      'mode',
+      'sequenceList',
+      'currentSong'
+    ])
   },
   methods: {
     togglePlaying() {
@@ -68,7 +75,9 @@ export default {
     nextSong() {
       let index = this.currentIndex + 1
       if (index === this.playlist.length) index = 0
+      this.setUrl(this.playlist[index].id)
       this.setCurrentIndex(index)
+      // console.log(this.playlist[index].id)
 
       if (!this.playing) this.togglePlaying()
     },
@@ -76,6 +85,7 @@ export default {
       let index = this.currentIndex - 1
       if (index < 0) index = this.playlist.length - 1
       this.setCurrentIndex(index)
+      this.setUrl(this.playlist[index].id)
 
       if (!this.playing) this.togglePlaying()
     },
@@ -101,7 +111,8 @@ export default {
       setCurrentIndex: 'SET_CURRENT_INDEX',
       setPlayMode: 'SET_PLAY_MODE',
       setPlaylist: 'SET_PLAYLIST'
-    })
+    }),
+    ...mapActions(['setUrl'])
   },
   components: {
     ProgressBar

@@ -15,7 +15,6 @@ export default {
     }
   },
   activated() {
-    // console.log('111')
     this._getDetail()
   },
   computed: {

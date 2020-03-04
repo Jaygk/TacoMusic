@@ -7,7 +7,7 @@
     <mini />
 
     <audio
-      :src="currentSong.songUrl"
+      :src="songUrl"
       ref="audio"
       @canplay="ready"
       @error="error"
@@ -32,7 +32,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['playlist', 'currentSong', 'playing', 'mode'])
+    ...mapGetters(['playlist', 'currentSong', 'playing', 'mode', 'songUrl'])
   },
   components: {
     Normal,
@@ -68,23 +68,22 @@ export default {
     })
   },
   watch: {
-    currentSong(newSong, oldSong) {
-      // 切换歌曲后,播放歌曲
-      if (newSong.id === oldSong.id) return
-      this.$nextTick(() => {
-        this.$refs.audio.play()
-      })
-    },
     playing(newVal) {
       // 监听播放状态,控制歌曲播放/暂停
       this.$nextTick(() => {
         const audio = this.$refs.audio
         newVal ? audio.play() : audio.pause()
       })
+    },
+    songUrl() {
+      this.$nextTick(() => {
+        this.$refs.audio.play()
+      })
     }
   },
   mounted() {
     this.$bus.$on('percentChange', percent => {
+      // console.log(percent)
       this.$refs.audio.currentTime = this.duration * percent
       if (!this.playing) this.togglePlaying()
     })
