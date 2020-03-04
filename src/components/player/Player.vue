@@ -39,6 +39,7 @@ export default {
     Mini
   },
   methods: {
+    // 切换播放状态
     togglePlaying() {
       this.setPlayingState(!this.playing)
     },
@@ -49,10 +50,12 @@ export default {
       // this.ready()
     },
     updateTime(e) {
+      // 获取播放歌曲的总时长及当前播放时间
       this.currentTime = e.target.currentTime
       this.duration = e.target.duration
     },
     end() {
+      // 根据播放模式,做出相应处理
       if (this.mode === playMode.loop) {
         this.loop()
       } else {
@@ -60,6 +63,7 @@ export default {
       }
     },
     loop() {
+      // 单曲循环模式
       this.$refs.audio.currentTime = 0
       this.$refs.audio.play()
     },
@@ -76,12 +80,14 @@ export default {
       })
     },
     songUrl() {
+      // 监听播放歌曲的变化
       this.$nextTick(() => {
         this.$refs.audio.play()
       })
     }
   },
   mounted() {
+    // 操作进度条,改变歌曲播放时间
     this.$bus.$on('percentChange', percent => {
       // console.log(percent)
       this.$refs.audio.currentTime = this.duration * percent

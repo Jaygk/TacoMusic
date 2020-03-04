@@ -75,6 +75,7 @@ export default {
     nextSong() {
       let index = this.currentIndex + 1
       if (index === this.playlist.length) index = 0
+      // 获取歌曲url
       this.setUrl(this.playlist[index].id)
       this.setCurrentIndex(index)
       // console.log(this.playlist[index].id)
@@ -90,6 +91,7 @@ export default {
       if (!this.playing) this.togglePlaying()
     },
     changeMode() {
+      // 改变播放模式
       const mode = (this.mode + 1) % 3
       this.setPlayMode(mode)
 
@@ -119,6 +121,7 @@ export default {
   },
   filters: {
     format(interval) {
+      // 处理时间,化为mm:ss的形式
       interval = interval | 0
       let minute = (interval / 60) | 0
       minute = minute.toString().padStart(2, '0')

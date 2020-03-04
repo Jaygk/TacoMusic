@@ -1,5 +1,6 @@
 import request from './request'
 
+// 获取轮播图列表
 export function getBanner() {
   return request({
     url: '/banner',
@@ -9,6 +10,7 @@ export function getBanner() {
   })
 }
 
+// 获取推荐歌单列表
 export function getHotList() {
   return request({
     url: '/top/playlist',

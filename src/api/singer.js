@@ -1,11 +1,13 @@
 import request from './request'
 
+// 获取歌手列表
 export function getSingers() {
   return request({
     url: '/toplist/artist'
   })
 }
 
+// 将歌手按拼音首字母排序，并存入数组
 export function getSingerList(arr) {
   if (!String.prototype.localeCompare) return null
   let letters = 'ABCDEFGHJKLMNOPQRSTWXYZ'.split('')
@@ -41,6 +43,7 @@ export function getSingerList(arr) {
   return list
 }
 
+// 获取歌手详情
 export function getSingerDetail(id) {
   return request({
     url: '/artist/top/song',
@@ -50,6 +53,7 @@ export function getSingerDetail(id) {
   })
 }
 
+// 从歌手详情中提取有用数据
 export async function getFinallyDetail(arr) {
   let list = []
 
