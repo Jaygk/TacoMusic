@@ -1,7 +1,7 @@
 import * as types from './mutation-types'
 import { playMode } from 'assets/js/config'
 import { shuffle } from 'assets/js/utils'
-import { getSongUrl } from 'api/songUrl'
+import { getSongUrl } from 'api/song'
 
 export default {
   async setUrl({ commit }, id) {

@@ -1,5 +1,9 @@
 <template>
   <div class="bottom">
+    <div class="dot-wrapper">
+      <span class="dot" :class="{ active: currentShow === 'cd' }"></span>
+      <span class="dot" :class="{ active: currentShow === 'lyric' }"></span>
+    </div>
     <div class="progress-wrapper">
       <span class="time time-l">{{ currentTime | format }}</span>
       <div class="progress-bar-wrapper">
@@ -39,6 +43,11 @@ import { playMode } from 'assets/js/config'
 import { shuffle } from 'assets/js/utils'
 
 export default {
+  data() {
+    return {
+      currentShow: 'cd'
+    }
+  },
   computed: {
     playIcon() {
       return this.playing ? 'icon-pause' : 'icon-play'
@@ -73,22 +82,30 @@ export default {
       this.setPlayingState(!this.playing)
     },
     nextSong() {
-      let index = this.currentIndex + 1
-      if (index === this.playlist.length) index = 0
-      // 获取歌曲url
-      this.setUrl(this.playlist[index].id)
-      this.setCurrentIndex(index)
-      // console.log(this.playlist[index].id)
+      if (this.playlist.length === 1) {
+        this.$parent.$parent.loop()
+      } else {
+        let index = this.currentIndex + 1
+        if (index === this.playlist.length) index = 0
+        // 获取歌曲url
+        this.setUrl(this.playlist[index].id)
+        this.setCurrentIndex(index)
+        // console.log(this.playlist[index].id)
 
-      if (!this.playing) this.togglePlaying()
+        if (!this.playing) this.togglePlaying()
+      }
     },
     prevSong() {
-      let index = this.currentIndex - 1
-      if (index < 0) index = this.playlist.length - 1
-      this.setCurrentIndex(index)
-      this.setUrl(this.playlist[index].id)
+      if (this.playlist.length === 1) {
+        this.$parent.$parent.loop()
+      } else {
+        let index = this.currentIndex - 1
+        if (index < 0) index = this.playlist.length - 1
+        this.setCurrentIndex(index)
+        this.setUrl(this.playlist[index].id)
 
-      if (!this.playing) this.togglePlaying()
+        if (!this.playing) this.togglePlaying()
+      }
     },
     changeMode() {
       // 改变播放模式

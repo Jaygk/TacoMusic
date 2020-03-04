@@ -66,6 +66,10 @@ export default {
       // 单曲循环模式
       this.$refs.audio.currentTime = 0
       this.$refs.audio.play()
+
+      if (this.$children[0].$children[0].currentLyric) {
+        this.$children[0].$children[0].currentLyric.seek(0)
+      }
     },
     ...mapMutations({
       setPlayingState: 'SET_PLAYING_STATE'
@@ -89,9 +93,13 @@ export default {
   mounted() {
     // 操作进度条,改变歌曲播放时间
     this.$bus.$on('percentChange', percent => {
-      // console.log(percent)
-      this.$refs.audio.currentTime = this.duration * percent
+      const currentTime = this.duration * percent
+      this.$refs.audio.currentTime = currentTime
       if (!this.playing) this.togglePlaying()
+
+      if (this.$children[0].$children[0].currentLyric) {
+        this.$children[0].$children[0].currentLyric.seek(currentTime * 1000)
+      }
     })
   }
 }
