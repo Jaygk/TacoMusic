@@ -79,7 +79,7 @@ export default {
         const res = await getLyric(id)
         this.currentLyric = new Lyric(res.lrc.lyric, this.handleLyric)
 
-        if (this.playing) this.currentLyric.play(1000)
+        if (this.playing) this.currentLyric.play()
       } catch (error) {
         this.currentLyric = null
         this.playingLyric = ''
