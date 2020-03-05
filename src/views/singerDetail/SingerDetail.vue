@@ -6,7 +6,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { getSingerDetail, getFinallyDetail } from 'api/singer'
-import MusicList from './childrenCpts/MusicList'
+import MusicList from 'components/musicList/MusicList'
 
 export default {
   data() {
