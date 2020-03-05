@@ -48,8 +48,14 @@ export default {
     return {
       currentLyric: null,
       currentLineNum: 0,
-      playingLyric: ''
+      playingLyric: '',
+      scrollLyric: null
     }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.scrollLyric = this.$refs.lyricList
+    })
   },
   created() {
     this.touch = {}
@@ -58,7 +64,7 @@ export default {
     cdCls() {
       return this.playing ? 'play' : 'play pause'
     },
-    ...mapGetters(['currentSong', 'playing', 'playlist'])
+    ...mapGetters(['currentSong', 'playing', 'playlist', 'fullScreen'])
   },
   watch: {
     async currentSong(newVal) {
@@ -70,6 +76,13 @@ export default {
     playing() {
       if (this.currentLyric) {
         this.currentLyric.togglePlay()
+      }
+    },
+    fullScreen(newVal) {
+      if (newVal) {
+        if (this.currentLineNum <= 6) return
+
+        this.scrollLyric.scrollTo(0, -(this.currentLineNum - 6) * 32, 1000)
       }
     }
   },
@@ -89,11 +102,11 @@ export default {
     handleLyric({ lineNum, txt }) {
       this.currentLineNum = lineNum
 
-      if (lineNum > 5) {
-        let lineEl = this.$refs.lyricLine[lineNum - 5]
-        this.$refs.lyricList.scrollToElement(lineEl, 1000)
+      if (lineNum > 6) {
+        const y = (lineNum - 6) * 32
+        this.scrollLyric.scrollTo(0, -y, 1000)
       } else {
-        this.$refs.lyricList.scrollTo(0, 0, 1000)
+        this.scrollLyric.scrollTo(0, 0, 1000)
       }
       this.playingLyric = txt
     },
