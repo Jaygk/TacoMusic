@@ -103,10 +103,10 @@ export default {
       this.currentLineNum = lineNum
 
       if (lineNum > 6) {
-        const y = (lineNum - 6) * 32
-        this.scrollLyric.scrollTo(0, -y, 1000)
+        let lineEl = this.$refs.lyricLine[lineNum - 6]
+        this.$refs.lyricList.scrollToElement(lineEl, 1000)
       } else {
-        this.scrollLyric.scrollTo(0, 0, 1000)
+        this.$refs.lyricList.scrollTo(0, 0, 1000)
       }
       this.playingLyric = txt
     },
