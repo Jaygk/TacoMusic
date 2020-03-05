@@ -1,6 +1,6 @@
 import * as types from './mutation-types'
-import { playMode } from 'assets/js/config'
-import { shuffle } from 'assets/js/utils'
+import { playMode } from 'utils/config'
+import { shuffle } from 'utils/shuffle'
 import { getSongUrl } from 'api/song'
 
 export default {

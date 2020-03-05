@@ -8,7 +8,7 @@
 import { getSingerList, getSingers } from 'api/singer'
 import ListView from './childrenCpts/ListView'
 
-import { playlistMixin } from 'assets/js/mixins'
+import { playlistMixin } from 'utils/mixins'
 
 export default {
   mixins: [playlistMixin],

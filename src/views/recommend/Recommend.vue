@@ -28,7 +28,7 @@ import Scroll from 'components/scroll/Scroll'
 import Loading from 'components/loading/Loading'
 
 import { getBanner, getHotList } from 'api/recommend'
-import { playlistMixin } from 'assets/js/mixins'
+import { playlistMixin } from 'utils/mixins'
 
 export default {
   mixins: [playlistMixin],

@@ -43,7 +43,7 @@ import Loading from 'components/loading/Loading'
 import SongList from 'components/songList/SongList'
 import { mapActions } from 'vuex'
 
-import { playlistMixin } from 'assets/js/mixins'
+import { playlistMixin } from 'utils/mixins'
 
 const RESERVED_HEIGHT = 40
 

@@ -60,7 +60,7 @@
 <script>
 import Scroll from 'components/scroll/Scroll'
 import Loading from 'components/loading/Loading'
-import { getData } from 'assets/js/dom'
+import { getData } from 'utils/dom'
 import { mapMutations } from 'vuex'
 
 const TITLE_HEIGHT = 30

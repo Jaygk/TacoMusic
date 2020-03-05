@@ -39,8 +39,8 @@
 <script>
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 import ProgressBar from 'components/progressBar/ProgressBar'
-import { playMode } from 'assets/js/config'
-import { shuffle } from 'assets/js/utils'
+import { playMode } from 'utils/config'
+import { shuffle } from 'utils/shuffle'
 
 export default {
   data() {

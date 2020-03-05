@@ -1,4 +1,4 @@
-import { playMode } from 'assets/js/config'
+import { playMode } from 'utils/config'
 
 export default {
   singer: {},

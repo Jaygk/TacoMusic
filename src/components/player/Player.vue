@@ -21,7 +21,7 @@
 import { mapGetters, mapMutations } from 'vuex'
 import Normal from './childrenCpts/normal/Normal'
 import Mini from './childrenCpts/Mini'
-import { playMode } from 'assets/js/config'
+import { playMode } from 'utils/config'
 
 export default {
   data() {
