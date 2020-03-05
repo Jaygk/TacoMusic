@@ -54,17 +54,15 @@ export function getSingerDetail(id) {
 }
 
 // 从歌手详情中提取有用数据
-export async function getFinallyDetail(arr) {
+export function getFinallyList(arr) {
   let list = []
 
   for (let item of arr) {
     let obj = {}
-    // const res = await getSongUrl(item.id)
-    // obj.songUrl = res.data[0].url
+
     obj.name = item.name
     obj.id = item.id
     obj.artist = item.ar[0].name
-    obj.alia = item.alia[0]
     obj.album = item.al.name
     obj.picUrl = item.al.picUrl
 

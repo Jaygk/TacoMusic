@@ -5,7 +5,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import { getSingerDetail, getFinallyDetail } from 'api/singer'
+import { getSingerDetail, getFinallyList } from 'api/singer'
 import MusicList from 'components/musicList/MusicList'
 
 export default {
@@ -35,7 +35,7 @@ export default {
       }
       const res = await getSingerDetail(this.singer.id)
       // console.log(res)
-      this.singerDetail = await getFinallyDetail(res.songs)
+      this.singerDetail = getFinallyList(res.songs)
       // console.log(this.singerDetail)
     }
   },
