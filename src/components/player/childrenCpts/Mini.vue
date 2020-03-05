@@ -15,7 +15,10 @@
         <p class="desc" v-html="currentSong.artist"></p>
       </div>
       <div class="control" @click.stop="togglePlaying">
-        <progress-circle :radius="32" :percent="$parent.$children[0].$children[1].percent">
+        <progress-circle
+          :radius="32"
+          :percent="$parent.$children[0].$children[1].percent"
+        >
           <i :class="miniIcon" class="icon-mini"></i>
         </progress-circle>
       </div>
@@ -45,11 +48,10 @@ export default {
       this.setFullScreen(true)
     },
     togglePlaying() {
-      this.setPlayingState(!this.playing)
+      this.$parent.togglePlaying()
     },
     ...mapMutations({
-      setFullScreen: 'SET_FULL_SCREEN',
-      setPlayingState: 'SET_PLAYING_STATE'
+      setFullScreen: 'SET_FULL_SCREEN'
     })
   },
   components: {

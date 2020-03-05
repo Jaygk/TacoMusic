@@ -73,11 +73,6 @@ export default {
       await this._getLyric(newVal.id)
       // console.log(this.currentLyric)
     },
-    playing() {
-      if (this.currentLyric) {
-        this.currentLyric.togglePlay()
-      }
-    },
     fullScreen(newVal) {
       if (newVal) {
         if (this.currentLineNum <= 6) return

@@ -42,6 +42,9 @@ export default {
     // 切换播放状态
     togglePlaying() {
       this.setPlayingState(!this.playing)
+      if (this.$children[0].$children[0].currentLyric) {
+        this.$children[0].$children[0].currentLyric.togglePlay()
+      }
     },
     ready() {
       this.songReady = true

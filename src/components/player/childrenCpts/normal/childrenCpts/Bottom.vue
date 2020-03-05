@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     togglePlaying() {
-      this.setPlayingState(!this.playing)
+      this.$parent.$parent.togglePlaying()
     },
     nextSong() {
       if (this.playlist.length === 1) {
@@ -126,7 +126,6 @@ export default {
       this.setCurrentIndex(index)
     },
     ...mapMutations({
-      setPlayingState: 'SET_PLAYING_STATE',
       setCurrentIndex: 'SET_CURRENT_INDEX',
       setPlayMode: 'SET_PLAY_MODE',
       setPlaylist: 'SET_PLAYLIST'
