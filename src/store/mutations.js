@@ -24,5 +24,8 @@ export default {
   },
   [types.SET_SONG_URL](state, url) {
     state.songUrl = url
+  },
+  [types.SET_RECOMMEND_DETAIL](state, item) {
+    state.recommendDetail = item
   }
 }

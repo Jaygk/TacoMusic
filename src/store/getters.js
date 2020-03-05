@@ -33,5 +33,9 @@ export default {
 
   songUrl(state) {
     return state.songUrl
+  },
+
+  recommendDetail(state) {
+    return state.recommendDetail
   }
 }

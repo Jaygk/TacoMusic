@@ -10,7 +10,7 @@
         />
 
         <!-- 热门歌单 -->
-        <hot-list :discList="hotList" class="hot-list" />
+        <hot-list @select="selectItem" :discList="hotList" class="hot-list" />
       </div>
 
       <!-- 加载等待组件 -->
@@ -18,6 +18,8 @@
         <loading />
       </div>
     </scroll>
+
+    <router-view />
   </div>
 </template>
 
@@ -45,6 +47,9 @@ export default {
     Loading
   },
   methods: {
+    selectItem(id) {
+      this.$router.push(`/recommend/${id}`)
+    },
     handlePlaylist(playlist) {
       const bottom = playlist.length > 0 ? '60px' : '0'
       this.$refs.recommend.style.bottom = bottom
