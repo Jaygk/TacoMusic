@@ -30,13 +30,10 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
-import { prefixStyle } from 'assets/js/dom'
 import animations from 'create-keyframe-animation'
 
 import Bottom from './childrenCpts/Bottom'
 import Middle from './childrenCpts/Middle'
-
-const transform = prefixStyle('transform')
 
 export default {
   computed: {
@@ -55,13 +52,13 @@ export default {
 
       let animation = {
         0: {
-          transform: `translate3d(${x}px,${y}px,0) scale(${scale})`
+          transform: `translate(${x}px,${y}px) scale(${scale})`
         },
         60: {
-          transform: `translate3d(0,0,0) scale(1.1)`
+          transform: `translate(0,0) scale(1.1)`
         },
         100: {
-          transform: `translate3d(0,0,0) scale(1)`
+          transform: `translate(0,0) scale(1)`
         }
       }
 
@@ -84,13 +81,13 @@ export default {
       this.$children[0].$refs.cdWrapper.style.transition = 'all 0.4s'
       const { x, y, scale } = this._getPosAndScale()
       this.$children[0].$refs.cdWrapper.style[
-        transform
-      ] = `translate3d(${x}px,${y}px,0) scale(${scale})`
+        'transform'
+      ] = `translate(${x}px,${y}px) scale(${scale})`
       this.$children[0].$refs.cdWrapper.addEventListener('transitionend', done)
     },
     afterLeave() {
       this.$children[0].$refs.cdWrapper.style.transition = ''
-      this.$children[0].$refs.cdWrapper.style[transform] = ''
+      this.$children[0].$refs.cdWrapper.style['transform'] = ''
     },
     _getPosAndScale() {
       const targetWidth = 40
@@ -169,9 +166,9 @@ export default {
   &.normal-enter, &.normal-leave-to
     opacity: 0
     .top
-      transform: translate3d(0, -100px, 0)
+      transform: translate(0, -100px)
     .bottom
-      transform: translate3d(0, 100px, 0)
+      transform: translate(0, 100px)
 
 @keyframes rotate
   0%

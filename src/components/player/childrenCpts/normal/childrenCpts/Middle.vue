@@ -41,11 +41,7 @@
 import { mapGetters } from 'vuex'
 import { getLyric } from 'api/song'
 import Lyric from 'lyric-parser'
-import { prefixStyle } from 'assets/js/dom'
 import Scroll from 'components/scroll/Scroll'
-
-const transform = prefixStyle('transform')
-const transitionDuration = prefixStyle('transitionDuration')
 
 export default {
   data() {
@@ -130,11 +126,11 @@ export default {
       )
       this.touch.percent = Math.abs(offsetWidth / window.innerWidth)
       this.$refs.lyricList.$el.style[
-        transform
-      ] = `translate3d(${offsetWidth}px,0,0)`
-      this.$refs.lyricList.$el.style[transitionDuration] = 0
+        'transform'
+      ] = `translate(${offsetWidth}px,0)`
+      this.$refs.lyricList.$el.style['transitionDuration'] = 0
       this.$refs.middleL.style.opacity = 1 - this.touch.percent
-      this.$refs.middleL.style[transitionDuration] = 0
+      this.$refs.middleL.style['transitionDuration'] = 0
     },
     middleTouchEnd() {
       if (!this.touch.moved) {
@@ -163,11 +159,11 @@ export default {
       }
       const time = 300
       this.$refs.lyricList.$el.style[
-        transform
-      ] = `translate3d(${offsetWidth}px,0,0)`
-      this.$refs.lyricList.$el.style[transitionDuration] = `${time}ms`
+        'transform'
+      ] = `translate(${offsetWidth}px,0)`
+      this.$refs.lyricList.$el.style['transitionDuration'] = `${time}ms`
       this.$refs.middleL.style.opacity = opacity
-      this.$refs.middleL.style[transitionDuration] = `${time}ms`
+      this.$refs.middleL.style['transitionDuration'] = `${time}ms`
       this.touch.initiated = false
     }
   },

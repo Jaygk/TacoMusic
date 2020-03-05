@@ -196,7 +196,7 @@ export default {
         return
       }
       this.fixedTop = fixedTop
-      this.$refs.fixed.style.transform = `translate3d(0,${fixedTop}px,0)`
+      this.$refs.fixed.style.transform = `translate(0,${fixedTop}px)`
     }
   }
 }

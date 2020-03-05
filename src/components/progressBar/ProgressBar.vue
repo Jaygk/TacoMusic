@@ -16,10 +16,7 @@
 </template>
 
 <script>
-import { prefixStyle } from 'assets/js/dom'
-
 const progressBtnWidth = 16
-const transform = prefixStyle('transform')
 
 export default {
   data() {
@@ -73,8 +70,8 @@ export default {
     _offset(offsetWidth) {
       this.$refs.progress.style.width = `${offsetWidth}px`
       this.$refs.progressBtn.style[
-        transform
-      ] = `translate3d(${offsetWidth}px,0,0)`
+        'transform'
+      ] = `translate(${offsetWidth}px,0)`
     }
   },
   watch: {
