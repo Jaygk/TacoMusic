@@ -37,5 +37,9 @@ export default {
 
   recommendDetail(state) {
     return state.recommendDetail
+  },
+
+  topList(state) {
+    return state.topList
   }
 }

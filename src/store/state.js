@@ -9,5 +9,6 @@ export default {
   mode: playMode.sequence,
   currentIndex: -1,
   songUrl: null,
-  recommendDetail: {}
+  recommendDetail: {},
+  topList: {}
 }

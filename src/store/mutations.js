@@ -27,5 +27,8 @@ export default {
   },
   [types.SET_RECOMMEND_DETAIL](state, item) {
     state.recommendDetail = item
+  },
+  [types.SET_TOP_LIST](state, item) {
+    state.topList = item
   }
 }

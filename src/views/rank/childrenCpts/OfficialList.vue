@@ -1,0 +1,88 @@
+<template>
+  <div class="official-list">
+    <div class="nav">
+      <h2>官方榜</h2>
+    </div>
+
+    <ul>
+      <li
+        @click="selectItem(item)"
+        class="item"
+        v-for="item in officialList"
+        :key="item.id"
+      >
+        <div class="icon">
+          <img width="100" height="100" v-lazy="item.picUrl" />
+        </div>
+        <ul class="song-list">
+          <li
+            class="song"
+            v-for="(song, index) in item.songList"
+            :key="song.first"
+          >
+            <span>{{ index + 1 }}</span>
+            <span>{{ song.first }}-{{ song.second }}</span>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    officialList: {
+      type: Array,
+      default() {
+        return []
+      }
+    }
+  },
+  methods: {
+    selectItem(item) {
+      this.$emit('select', item)
+    }
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+@import "~assets/stylus/variable"
+@import "~assets/stylus/mixin"
+.official-list
+  margin-top: 10px
+  .nav
+    height: 30px
+    display: flex
+    align-items: center
+    h2
+      font-size: $font-size-medium-x
+      margin-left: 20px
+      color: $color-text-ll
+  .item
+    display: flex
+    margin: 0 20px
+    padding-top: 20px
+    height: 100px
+    &:last-child
+      padding-bottom: 20px
+    .icon
+      flex: 0 0 100px
+      width: 100px
+      height: 100px
+    .song-list
+      flex: 1
+      display: flex
+      flex-direction: column
+      justify-content: center
+      padding: 0 20px
+      height: 100px
+      overflow: hidden
+      background: $color-highlight-background
+      color: $color-text-d
+      font-size: $font-size-small
+      .song
+        no-wrap()
+        line-height: 26px
+</style>
