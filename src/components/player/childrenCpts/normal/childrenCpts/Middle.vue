@@ -68,7 +68,11 @@ export default {
   },
   watch: {
     async currentSong(newVal) {
-      if (this.currentLyric) this.currentLyric.stop()
+      if (this.currentLyric) {
+        this.currentLyric.stop()
+        this.currentLyric = null
+        this.playingLyric = ''
+      }
 
       await this._getLyric(newVal.id)
       // console.log(this.currentLyric)
@@ -85,13 +89,18 @@ export default {
     async _getLyric(id) {
       try {
         const res = await getLyric(id)
-        this.currentLyric = new Lyric(res.lrc.lyric, this.handleLyric)
+        if (!res.lrc) {
+          this.currentLyric = null
+          this.playingLyric = '纯音乐,请欣赏'
+        } else {
+          this.currentLyric = new Lyric(res.lrc.lyric, this.handleLyric)
 
-        if (this.playing) this.currentLyric.play()
+          if (this.playing) this.currentLyric.play()
+        }
       } catch (error) {
         this.currentLyric = null
         this.playingLyric = ''
-        this.currentLineNum = 0
+        // this.currentLineNum = 0
       }
     },
     handleLyric({ lineNum, txt }) {
