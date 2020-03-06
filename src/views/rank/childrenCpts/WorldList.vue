@@ -44,7 +44,7 @@ export default {
 <style lang="stylus" scoped>
 @import "~assets/stylus/variable"
 .world-list
-  margin: 18px 0 20px 20px
+  margin-top: 18px
   .nav
     height: 30px
     display: flex
@@ -52,9 +52,11 @@ export default {
     h2
       font-size: $font-size-medium-x
       color: $color-text-ll
+      margin-left: 20px
 
   .list-main
-    margin-top: 12px
+    margin-top: 20px
+    padding: 0 20px
     display: flex
     justify-content: space-between
     flex-wrap: wrap
@@ -63,13 +65,12 @@ export default {
       margin-bottom: 24px
       height: 120px
       width: 100px
-      flex: 1
       img
         border-radius: 5px
 
       .desc
         color: $color-text-d
-        font-size: $font-size-medium
+        font-size: $font-size-small
         text-align: center
         margin-top: 6px
         width:100px
