@@ -39,7 +39,8 @@ export function getSingerList(arr) {
     }
   })
 
-  list[list.length - 1].data.splice(9)
+  let index = list[list.length - 1].data.findIndex(item => /^[a-zA-Z]/.test(item.name))
+  list[list.length - 1].data.splice(index)
   return list
 }
 
