@@ -79,6 +79,9 @@ export default {
     },
     fullScreen(newVal) {
       if (newVal) {
+        if (this.$parent.$children[1].currentShow === 'lyric') {
+          this.touchEnd()
+        }
         if (this.currentLineNum <= 6) return
 
         this.scrollLyric.scrollTo(0, -(this.currentLineNum - 6) * 32, 1000)
@@ -153,6 +156,10 @@ export default {
       if (!this.touch.moved) {
         return
       }
+      this.touchEnd()
+      this.touch.initiated = false
+    },
+    touchEnd() {
       let offsetWidth
       let opacity
       if (this.$parent.$children[1].currentShow === 'cd') {
@@ -181,7 +188,6 @@ export default {
       this.$refs.lyricList.$el.style['transitionDuration'] = `${time}ms`
       this.$refs.middleL.style.opacity = opacity
       this.$refs.middleL.style['transitionDuration'] = `${time}ms`
-      this.touch.initiated = false
     }
   },
   components: {
