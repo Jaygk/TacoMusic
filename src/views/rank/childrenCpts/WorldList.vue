@@ -11,8 +11,9 @@
         v-for="item in worldList"
         :key="item.id"
       >
-        <div class="img">
+        <div class="icon">
           <img width="100" height="100" v-lazy="item.picUrl" />
+          <span class="update" v-text="item.update"></span>
         </div>
 
         <div class="desc">
@@ -65,8 +66,16 @@ export default {
       margin-bottom: 24px
       height: 120px
       width: 100px
-      img
-        border-radius: 5px
+      .icon
+        position: relative
+        .update
+          position: absolute
+          bottom: 10px
+          left: 8px
+          font-size: $font-size-small-s
+          color: $color-text
+        img
+          border-radius: 6px
 
       .desc
         color: $color-text-d

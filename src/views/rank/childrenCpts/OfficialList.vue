@@ -13,6 +13,7 @@
       >
         <div class="icon">
           <img width="100" height="100" v-lazy="item.picUrl" />
+          <span class="update" v-text="item.update"></span>
         </div>
         <ul class="song-list">
           <li
@@ -65,12 +66,22 @@ export default {
     margin: 0 20px
     padding-top: 20px
     height: 100px
+    border-radius: 10px !important
     &:last-child
       padding-bottom: 20px
     .icon
+      position: relative
       flex: 0 0 100px
       width: 100px
       height: 100px
+      .update
+        position: absolute
+        bottom: 8px
+        left: 8px
+        font-size: $font-size-small-s
+        color: $color-text
+      img
+        border-radius: 6px 0 0 6px
     .song-list
       flex: 1
       display: flex
