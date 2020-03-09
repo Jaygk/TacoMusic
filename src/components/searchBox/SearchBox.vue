@@ -6,6 +6,7 @@
       v-model="query"
       class="box"
       :placeholder="searchDefault ? searchDefault.showKeyword : ''"
+      @keyup.enter="search"
     />
     <i @click="clear" v-show="query" class="icon-dismiss"></i>
   </div>
@@ -28,6 +29,15 @@ export default {
     }
   },
   methods: {
+    search() {
+      let keywords = ''
+      if (this.query.trim().length === 0) {
+        keywords = this.searchDefault.realkeyword
+      } else {
+        keywords = this.query.trim()
+      }
+      this.$emit('search', keywords)
+    },
     clear() {
       this.query = ''
     },
