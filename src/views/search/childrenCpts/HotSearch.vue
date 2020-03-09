@@ -3,7 +3,7 @@
     <h2 class="title">热门搜索</h2>
     <ul class="list">
       <li
-        @click="selectItem(item, index)"
+        @click="selectItem(item.searchWord)"
         class="item"
         v-for="(item, index) in hotList"
         :key="item.searchWord"
@@ -37,8 +37,8 @@ export default {
     }
   },
   methods: {
-    selectItem(item, index) {
-      this.$emit('select', item, index)
+    selectItem(keywords) {
+      this.$emit('select', keywords)
     },
     getRankCls(index) {
       if (index <= 2) {
@@ -62,7 +62,7 @@ export default {
 
 .hot-search
   margin-top: 36px
-  padding: 0 8px 20px 8px
+  padding: 0 8px 18px 8px
   .title 
     font-size: $font-size-medium-x
     color: $color-text-ll
