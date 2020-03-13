@@ -9,7 +9,12 @@
     <div class="normal-player" v-show="fullScreen">
       <!-- 背景图片(歌手图片) -->
       <div class="background">
-        <img width="100%" height="100%" :src="currentSong.picUrl" alt="" />
+        <img
+          width="100%"
+          height="100%"
+          :src="currentSong.picUrl ? currentSong.picUrl : picUrl"
+          alt=""
+        />
       </div>
       <!-- 顶部状态栏(back按钮及歌曲标题) -->
       <div class="top">
@@ -37,7 +42,7 @@ import Middle from './childrenCpts/Middle'
 
 export default {
   computed: {
-    ...mapGetters(['fullScreen', 'currentSong', 'playing'])
+    ...mapGetters(['fullScreen', 'currentSong', 'playing', 'picUrl'])
   },
   components: {
     Bottom,
