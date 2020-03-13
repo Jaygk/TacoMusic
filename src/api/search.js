@@ -8,7 +8,7 @@ export function getHotSearch() {
 }
 
 // 搜索
-export function search(keywords) {
+function search(keywords) {
   return request({
     url: '/search',
     params: {
@@ -22,4 +22,34 @@ export function getSearchDefault() {
   return request({
     url: '/search/default'
   })
+}
+
+// 获取歌曲详情
+export function getSongDetail(ids) {
+  return request({
+    url: '/song/detail',
+    params: {
+      ids
+    }
+  })
+}
+
+// 获取搜索歌曲列表
+export async function getSearchList(keywords) {
+  let list = []
+  const res = await search(keywords)
+  const arr = res.result.songs
+
+  for (let item of arr) {
+    let obj = {}
+
+    obj.name = item.name
+    obj.id = item.id
+    obj.artist = item.artists[0].name
+    obj.album = item.album.name
+
+    list.push(obj)
+  }
+
+  return list
 }
