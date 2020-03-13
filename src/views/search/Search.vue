@@ -4,16 +4,15 @@
     <div class="box">
       <search-box @search="toSearch" :searchDefault="searchDefault" />
     </div>
-    <div class="wrapper" ref="wrapper">
-      <scroll :data="HotSearch" class="scroll" ref="scroll">
-        <div>
-          <!-- 搜索历史 -->
-          <history />
-          <!-- 热门搜索 -->
-          <hot-search @select="toSearch" :hotList="HotSearch" />
-        </div>
-      </scroll>
-    </div>
+
+    <scroll :data="HotSearch" class="scroll" ref="scroll">
+      <div class="list">
+        <!-- 搜索历史 -->
+        <history />
+        <!-- 热门搜索 -->
+        <hot-search @select="toSearch" :hotList="HotSearch" />
+      </div>
+    </scroll>
 
     <!-- 加载等待组件 -->
     <div class="loading-container" v-show="!HotSearch.length">
@@ -50,7 +49,7 @@ export default {
   methods: {
     handlePlaylist(playlist) {
       const bottom = playlist.length > 0 ? '60px' : '0'
-      this.$refs.wrapper.style.bottom = bottom
+      this.$refs.scroll.$el.style.bottom = bottom
     },
     async _getSearchDefault() {
       const res = await getSearchDefault()
@@ -90,15 +89,14 @@ export default {
 .search
   .box
     margin: 6px 12px 0 12px
-  .wrapper
-    position: fixed
-    top: 168px
-    bottom: 0
-    left: 12px
-    right: 12px
   .scroll
-    height: 100%
+    position: fixed
+    top: 140px
+    bottom: 0
+    background: $color-background
     overflow: hidden
+    .list
+      padding: 20px 12px 0
   .loading-container
     position: absolute
     width: 100%

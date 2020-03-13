@@ -61,7 +61,7 @@ export default {
 @import "~assets/stylus/mixin"
 
 .hot-search
-  margin-top: 36px
+  // margin-top: 36px
   padding: 0 8px 18px 8px
   .title 
     font-size: $font-size-medium-x
