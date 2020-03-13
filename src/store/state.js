@@ -10,5 +10,6 @@ export default {
   currentIndex: -1,
   songUrl: null,
   recommendDetail: {},
-  topList: {}
+  topList: {},
+  picUrl: null
 }

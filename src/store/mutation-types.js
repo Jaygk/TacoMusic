@@ -17,3 +17,5 @@ export const SET_SONG_URL = 'SET_SONG_URL'
 export const SET_RECOMMEND_DETAIL = 'SET_RECOMMEND_DETAIL'
 
 export const SET_TOP_LIST = 'SET_TOP_LIST'
+
+export const SET_PIC_URL = 'SET_PIC_URL'

@@ -30,5 +30,8 @@ export default {
   },
   [types.SET_TOP_LIST](state, item) {
     state.topList = item
+  },
+  [types.SET_PIC_URL](state, url) {
+    state.picUrl = url
   }
 }

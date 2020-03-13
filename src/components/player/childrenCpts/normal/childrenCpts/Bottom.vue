@@ -89,6 +89,7 @@ export default {
         if (index === this.playlist.length) index = 0
         // 获取歌曲url
         this.setUrl(this.playlist[index].id)
+        this.setPicUrl(this.playlist[index].id)
         this.setCurrentIndex(index)
         // console.log(this.playlist[index].id)
 
@@ -103,6 +104,7 @@ export default {
         if (index < 0) index = this.playlist.length - 1
         this.setCurrentIndex(index)
         this.setUrl(this.playlist[index].id)
+        this.setPicUrl(this.playlist[index].id)
 
         if (!this.playing) this.togglePlaying()
       }
@@ -130,7 +132,7 @@ export default {
       setPlayMode: 'SET_PLAY_MODE',
       setPlaylist: 'SET_PLAYLIST'
     }),
-    ...mapActions(['setUrl'])
+    ...mapActions(['setUrl', 'setPicUrl'])
   },
   components: {
     ProgressBar

@@ -8,7 +8,10 @@
     <div class="middle-l" ref="middleL">
       <div class="cd-wrapper" ref="cdWrapper">
         <div class="cd" :class="cdCls">
-          <img class="image" :src="currentSong.picUrl" />
+          <img
+            class="image"
+            :src="currentSong.picUrl ? currentSong.picUrl : picUrl"
+          />
         </div>
       </div>
       <div class="playing-lyric-wrapper">
@@ -64,7 +67,13 @@ export default {
     cdCls() {
       return this.playing ? 'play' : 'play pause'
     },
-    ...mapGetters(['currentSong', 'playing', 'playlist', 'fullScreen'])
+    ...mapGetters([
+      'currentSong',
+      'playing',
+      'playlist',
+      'fullScreen',
+      'picUrl'
+    ])
   },
   watch: {
     async currentSong(newVal) {

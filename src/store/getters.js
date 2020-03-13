@@ -41,5 +41,9 @@ export default {
 
   topList(state) {
     return state.topList
+  },
+
+  picUrl(state) {
+    return state.picUrl
   }
 }

@@ -6,7 +6,7 @@
           :class="cdCls"
           width="40"
           height="40"
-          :src="currentSong.picUrl"
+          :src="currentSong.picUrl ? currentSong.picUrl : picUrl"
           alt=""
         />
       </div>
@@ -41,7 +41,7 @@ export default {
     cdCls() {
       return this.playing ? 'play' : 'play pause'
     },
-    ...mapGetters(['fullScreen', 'currentSong', 'playing'])
+    ...mapGetters(['fullScreen', 'currentSong', 'playing', 'picUrl'])
   },
   methods: {
     open() {
