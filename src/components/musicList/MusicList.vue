@@ -10,10 +10,10 @@
           ref="playBtn"
           v-show="songs.length > 0"
           class="play"
-          @click="random"
+          @click="playAllSongs"
         >
           <i class="icon-play"></i>
-          <span class="text">随机播放全部</span>
+          <span class="text">播放全部</span>
         </div>
       </div>
       <div class="filter" ref="filter"></div>
@@ -104,12 +104,10 @@ export default {
         index
       })
     },
-    random() {
-      this.randomPlay({
-        list: this.songs
-      })
+    playAllSongs() {
+      this.playAll(this.songs)
     },
-    ...mapActions(['selectPlay', 'randomPlay'])
+    ...mapActions(['selectPlay', 'playAll'])
   },
   watch: {
     scrollY(newVal) {
@@ -210,7 +208,7 @@ export default {
       width: 100%
       .play
         box-sizing: border-box
-        width: 135px
+        width: 120px
         padding: 7px 0
         margin: 0 auto
         text-align: center

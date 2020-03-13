@@ -35,12 +35,12 @@ export default {
     commit(types.SET_PLAYING_STATE, true)
   },
 
-  randomPlay({ commit, dispatch }, { list }) {
-    commit(types.SET_PLAY_MODE, playMode.random)
+  playAll({ commit, dispatch }, list) {
+    commit(types.SET_PLAY_MODE, playMode.sequence)
     commit(types.SET_SEQUENCE_LIST, list)
-    let randomList = shuffle(list)
-    commit(types.SET_PLAYLIST, randomList)
-    dispatch('setUrl', randomList[0].id)
+    commit(types.SET_PLAYLIST, list)
+    dispatch('setUrl', list[0].id)
+    dispatch('setPicUrl', list[0].id)
     commit(types.SET_CURRENT_INDEX, 0)
     commit(types.SET_FULL_SCREEN, true)
     commit(types.SET_PLAYING_STATE, true)

@@ -9,6 +9,11 @@
       </div>
     </div>
 
+    <div v-show="searchList.length > 0" class="play" @click="playAllSongs">
+      <i class="icon-play"></i>
+      <span class="text">播放全部</span>
+    </div>
+
     <scroll :data="searchList" class="scroll" ref="scroll">
       <div class="song-list">
         <song-list @select="selectItem" :songs="searchList" />
@@ -60,6 +65,7 @@ export default {
       this.$router.go(-1)
     },
     async _getSearchDefault() {
+      this.searchDefault = null
       const res = await getSearchDefault()
       this.searchDefault = res.data
       // console.log(this.searchDefault)
@@ -84,7 +90,10 @@ export default {
     selectItem(item, index) {
       this.insertSong(item)
     },
-    ...mapActions(['insertSong'])
+    playAllSongs() {
+      this.playAll(this.searchList)
+    },
+    ...mapActions(['insertSong', 'playAll'])
   },
   activated() {
     this._getSearchDefault()
@@ -117,14 +126,23 @@ export default {
         padding: 10px
         font-size: $font-size-large-x
         color: $color-theme
+  .play
+    height: 30px
+    width: 100%
+    padding: 10px 20px
+    display: flex
+    align-items: center
+    .icon-play
+      margin-right: 6px
+      font-size: $font-size-medium-x
   .scroll
     position: fixed
-    top: 50px
+    top: 96px
     bottom: 0
     background: $color-background
     overflow: hidden
     .song-list
-      padding: 10px 12px
+      padding: 0 0 10px 12px
   .loading-container
     position: absolute
     width: 100%
