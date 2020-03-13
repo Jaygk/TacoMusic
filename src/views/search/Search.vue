@@ -5,17 +5,17 @@
       <search-box @search="toSearch" :searchDefault="searchDefault" />
     </div>
 
-    <scroll :data="HotSearch" class="scroll" ref="scroll">
+    <scroll :data="hotSearch" class="scroll" ref="scroll">
       <div class="list">
         <!-- 搜索历史 -->
         <history />
         <!-- 热门搜索 -->
-        <hot-search @select="toSearch" :hotList="HotSearch" />
+        <hot-search @select="toSearch" :hotList="hotSearch" />
       </div>
     </scroll>
 
     <!-- 加载等待组件 -->
-    <div class="loading-container" v-show="!HotSearch.length">
+    <div class="loading-container" v-show="!hotSearch.length">
       <loading />
     </div>
   </div>
@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       searchDefault: null,
-      HotSearch: []
+      hotSearch: []
     }
   },
   components: {
@@ -52,14 +52,16 @@ export default {
       this.$refs.scroll.$el.style.bottom = bottom
     },
     async _getSearchDefault() {
+      this.searchDefault = null
       const res = await getSearchDefault()
       this.searchDefault = res.data
       // console.log(this.searchDefault)
     },
 
     async _getHotSearch() {
+      this.hotSearch = []
       const res = await getHotSearch()
-      this.HotSearch = res.data
+      this.hotSearch = res.data
     },
 
     refresh() {
@@ -92,6 +94,8 @@ export default {
   .scroll
     position: fixed
     top: 140px
+    left: 0
+    right: 0
     bottom: 0
     background: $color-background
     overflow: hidden
