@@ -76,7 +76,7 @@ export default {
     .rank
       flex: 0 0 25px
       width: 25px
-      margin-right: 30px
+      margin-right: 20px
       text-align: center
       .icon
         display: inline-block
