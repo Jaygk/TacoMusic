@@ -5,7 +5,7 @@
         @click="selectItem(song, index)"
         class="item"
         v-for="(song, index) in songs"
-        :key="song.id"
+        :key="song.id + Math.random() * 1000"
       >
         <div class="rank" v-show="rank">
           <span :class="getRankCls(index)" v-text="getRankText(index)"></span>
