@@ -89,10 +89,16 @@ export default {
       line-height: 20px
       overflow: hidden
       .name
-        no-wrap()
+        width: 300px
         color: $color-text
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
       .desc
-        no-wrap()
         margin-top: 4px
+        width: 300px
         color: $color-text-d
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
 </style>

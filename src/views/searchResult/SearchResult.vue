@@ -137,11 +137,12 @@ export default {
   position: fixed
   left: 0
   top: 0
-  right: 10px
+  right: 0
   bottom: 0
   z-index: 100
   background: $color-background
   .top
+    padding-right: 10px
     margin-top: 6px
     display: flex
     z-index: 101
@@ -170,7 +171,7 @@ export default {
     background: $color-background
     overflow: hidden
     .song-list
-      padding: 0 0 10px 12px
+      padding: 0 12px 10px
   .loading-container
     position: absolute
     width: 100%
