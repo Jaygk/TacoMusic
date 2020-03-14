@@ -14,9 +14,16 @@
       <span class="text">播放全部</span>
     </div>
 
-    <scroll :data="searchList" class="scroll" ref="scroll">
+    <scroll
+      :pullup="true"
+      @scrollToEnd="searchMore"
+      :data="searchList"
+      class="scroll"
+      ref="scroll"
+    >
       <div class="song-list">
         <song-list @select="selectItem" :songs="searchList" />
+        <loading v-show="hasMore && searchList.length" title="" />
       </div>
     </scroll>
 
@@ -33,7 +40,7 @@ import SongList from 'components/songList/SongList'
 import Loading from 'components/loading/Loading'
 import Scroll from 'components/scroll/Scroll'
 
-import { getSearchDefault, getSearchList } from 'api/search'
+import { getSearchDefault, getSearchList, search } from 'api/search'
 import { playlistMixin } from 'utils/mixins'
 import { mapActions } from 'vuex'
 
@@ -42,7 +49,10 @@ export default {
   data() {
     return {
       searchDefault: null,
-      searchList: []
+      searchList: [],
+      limit: 30,
+      page: 0,
+      hasMore: true
     }
   },
   computed: {
@@ -77,12 +87,15 @@ export default {
     },
 
     async _getSearchList(keywords) {
+      this.page = 0
+      this.hasMore = true
       if (!keywords) {
         this.$router.push('/search')
         return
       }
       this.searchList = []
-      this.searchList = await getSearchList(keywords)
+      const res = await search(keywords, this.limit, this.page * this.limit)
+      this.searchList = getSearchList(res.result.songs)
     },
     toSearch(keywords) {
       this._getSearchList(keywords)
@@ -92,6 +105,21 @@ export default {
     },
     playAllSongs() {
       this.playAll(this.searchList)
+    },
+    async searchMore() {
+      if (!this.hasMore) return
+
+      this.page++
+      const res = await search(
+        this.keywords,
+        this.limit,
+        this.page * this.limit
+      )
+      if (!res.result.songs) {
+        this.hasMore = false
+        return
+      }
+      this.searchList = this.searchList.concat(getSearchList(res.result.songs))
     },
     ...mapActions(['insertSong', 'playAll'])
   },

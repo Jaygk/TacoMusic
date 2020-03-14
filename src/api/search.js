@@ -8,11 +8,13 @@ export function getHotSearch() {
 }
 
 // 搜索
-function search(keywords) {
+export function search(keywords, limit, offset) {
   return request({
     url: '/search',
     params: {
-      keywords
+      keywords,
+      limit,
+      offset
     }
   })
 }
@@ -35,10 +37,10 @@ export function getSongDetail(ids) {
 }
 
 // 获取搜索歌曲列表
-export async function getSearchList(keywords) {
+export function getSearchList(arr) {
   let list = []
-  const res = await search(keywords)
-  const arr = res.result.songs
+  // const res = await search(keywords, limit, offset)
+  // const arr = res.result.songs
 
   for (let item of arr) {
     let obj = {}
