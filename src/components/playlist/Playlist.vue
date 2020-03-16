@@ -5,10 +5,13 @@
         <div class="list-header">
           <h1 class="title">
             <i class="icon" :class="iconMode" @click="changeMode"></i>
-            <span class="text">{{ modeText }} ({{ songCount }}首)</span>
-            <span class="clear" @click="showConfirm"
-              ><i class="icon-clear"></i
-            ></span>
+            <div class="text">
+              <span>{{ modeText }}</span>
+              <span v-show="modeText !== '单曲循环'"> ({{ songCount }}首)</span>
+            </div>
+            <span class="clear" @click="showConfirm">
+              <i class="icon-clear"></i>
+            </span>
           </h1>
         </div>
         <scroll ref="listContent" :data="sequenceList" class="list-content">
@@ -45,7 +48,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 import Scroll from 'components/scroll/Scroll'
 import Confirm from 'components/confirm/Confirm'
 import { playerMixin } from 'utils/mixins'
