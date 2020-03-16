@@ -28,9 +28,9 @@
       <div class="icon i-right">
         <i class="icon-next" @click="nextSong"></i>
       </div>
-      <!-- 点击收藏/取消 -->
+      <!-- 播放列表 -->
       <div class="icon i-right">
-        <i class="icon icon-not-favorite"></i>
+        <i class="icon icon-playlist" @click="showList"></i>
       </div>
     </div>
   </div>
@@ -126,6 +126,9 @@ export default {
     resetCurrentIndex(list) {
       let index = list.findIndex(item => item.id === this.currentSong.id)
       this.setCurrentIndex(index)
+    },
+    showList() {
+      this.$parent.$parent.$refs.playlist.show()
     },
     ...mapMutations({
       setCurrentIndex: 'SET_CURRENT_INDEX',

@@ -23,7 +23,7 @@
             <i :class="miniIcon" class="icon-mini"></i>
           </progress-circle>
         </div>
-        <div class="playlist">
+        <div @click.stop="showList" class="playlist">
           <i class="icon-playlist"></i>
         </div>
       </div>
@@ -51,6 +51,9 @@ export default {
     },
     togglePlaying() {
       this.$parent.togglePlaying()
+    },
+    showList() {
+      this.$parent.$refs.playlist.show()
     },
     ...mapMutations({
       setFullScreen: 'SET_FULL_SCREEN'

@@ -14,6 +14,9 @@
       @timeupdate="updateTime"
       @ended="end"
     ></audio>
+
+    <!-- 播放列表 -->
+    <playlist ref="playlist" />
   </div>
 </template>
 
@@ -22,6 +25,7 @@ import { mapGetters, mapMutations } from 'vuex'
 import Normal from './childrenCpts/normal/Normal'
 import Mini from './childrenCpts/Mini'
 import { playMode } from 'utils/config'
+import Playlist from 'components/playlist/Playlist'
 
 export default {
   data() {
@@ -36,7 +40,8 @@ export default {
   },
   components: {
     Normal,
-    Mini
+    Mini,
+    Playlist
   },
   methods: {
     // 切换播放状态
