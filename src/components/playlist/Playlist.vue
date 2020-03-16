@@ -124,7 +124,16 @@ export default {
       this.$refs.addSong.show()
     }
   },
-  watch: {},
+  watch: {
+    currentSong(newSong, oldSong) {
+      if (!this.showFlag || newSong.id === oldSong.id) {
+        return
+      }
+      setTimeout(() => {
+        this.scrollToCurrent(newSong)
+      }, 20)
+    }
+  },
   components: {
     Scroll,
     Confirm
