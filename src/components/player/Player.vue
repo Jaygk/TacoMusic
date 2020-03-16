@@ -85,16 +85,21 @@ export default {
   },
   watch: {
     playing(newVal) {
+      if (!this.songUrl) return
       // 监听播放状态,控制歌曲播放/暂停
       this.$nextTick(() => {
         const audio = this.$refs.audio
         newVal ? audio.play() : audio.pause()
       })
     },
-    songUrl() {
+    songUrl(val) {
       // 监听播放歌曲的变化
       this.$nextTick(() => {
-        this.$refs.audio.play()
+        if (!val) {
+          this.$refs.audio.pause()
+        } else {
+          this.$refs.audio.play()
+        }
       })
     }
   },
