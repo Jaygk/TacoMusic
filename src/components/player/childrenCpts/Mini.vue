@@ -14,16 +14,18 @@
         <h2 class="name" v-html="currentSong.name"></h2>
         <p class="desc" v-html="currentSong.artist"></p>
       </div>
-      <div class="control" @click.stop="togglePlaying">
-        <progress-circle
-          :radius="32"
-          :percent="$parent.$children[0].$children[1].percent"
-        >
-          <i :class="miniIcon" class="icon-mini"></i>
-        </progress-circle>
-      </div>
       <div class="control">
-        <i class="icon-playlist"></i>
+        <div class="playIcon" @click.stop="togglePlaying">
+          <progress-circle
+            :radius="32"
+            :percent="$parent.$children[0].$children[1].percent"
+          >
+            <i :class="miniIcon" class="icon-mini"></i>
+          </progress-circle>
+        </div>
+        <div class="playlist">
+          <i class="icon-playlist"></i>
+        </div>
       </div>
     </div>
   </transition>
@@ -104,12 +106,14 @@ export default {
         font-size: $font-size-small
         color: $color-text-d
     .control
-      flex: 0 0 30px
-      width: 30px
-      padding: 0 10px
-      .icon-play-mini, .icon-pause-mini, .icon-playlist
-        font-size: 30px
+      display: flex
+      margin-right: 20px
+      .icon-play-mini, .icon-pause-mini
         color: $color-theme-d
+      .icon-playlist
+        font-size: 30px
+        color: $color-theme
+        margin-left: 16px
       .icon-mini
         font-size: 32px
         position: absolute
