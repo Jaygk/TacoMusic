@@ -60,6 +60,6 @@ export const playerMixin = {
       setCurrentIndex: 'SET_CURRENT_INDEX',
       setPlayingState: 'SET_PLAYING_STATE'
     }),
-    ...mapActions(['setPicUrl', 'setUrl'])
+    ...mapActions(['setPicUrl', 'setUrl', 'deleteSong', 'deleteSongList'])
   }
 }

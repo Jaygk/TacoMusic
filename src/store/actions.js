@@ -12,10 +12,12 @@ function findIndex(list, song) {
 
 export default {
   async setPicUrl({ commit }, id) {
+    commit(types.SET_PIC_URL, null)
     const res = await getSongDetail(id)
     commit(types.SET_PIC_URL, res.songs[0].al.picUrl)
   },
   async setUrl({ commit }, id) {
+    commit(types.SET_SONG_URL, null)
     const res = await getSongUrl(id)
     commit(types.SET_SONG_URL, res.data[0].url)
   },
@@ -90,5 +92,40 @@ export default {
     commit(types.SET_CURRENT_INDEX, currentIndex)
     commit(types.SET_FULL_SCREEN, true)
     commit(types.SET_PLAYING_STATE, true)
+  },
+  deleteSong({ commit, state, dispatch }, song) {
+    let flag = false
+    let playlist = state.playlist.slice()
+    let sequenceList = state.sequenceList.slice()
+    let currentIndex = state.currentIndex
+    if (playlist[currentIndex].id === song.id) flag = true
+    let pIndex = findIndex(playlist, song)
+    playlist.splice(pIndex, 1)
+    let sIndex = findIndex(sequenceList, song)
+    sequenceList.splice(sIndex, 1)
+    if (currentIndex > pIndex || currentIndex === playlist.length) {
+      currentIndex--
+    }
+
+    if (!playlist.length) {
+      dispatch('deleteSongList')
+    } else {
+      commit(types.SET_PLAYLIST, playlist)
+      commit(types.SET_SEQUENCE_LIST, sequenceList)
+      if (flag) {
+        dispatch('setUrl', playlist[currentIndex].id)
+        dispatch('setPicUrl', playlist[currentIndex].id)
+        commit(types.SET_CURRENT_INDEX, currentIndex)
+        commit(types.SET_PLAYING_STATE, true)
+      }
+    }
+  },
+
+  deleteSongList({ commit }) {
+    commit(types.SET_SONG_URL, null)
+    commit(types.SET_CURRENT_INDEX, -1)
+    commit(types.SET_PLAYLIST, [])
+    commit(types.SET_SEQUENCE_LIST, [])
+    commit(types.SET_PLAYING_STATE, false)
   }
 }

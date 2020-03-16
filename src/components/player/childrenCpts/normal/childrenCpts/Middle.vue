@@ -83,8 +83,9 @@ export default {
         this.playingLyric = ''
       }
 
+      if (!newVal.name) return
+      
       await this._getLyric(newVal.id)
-      // console.log(this.currentLyric)
     },
     fullScreen(newVal) {
       if (newVal) {

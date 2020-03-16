@@ -6,7 +6,9 @@
           <h1 class="title">
             <i class="icon" :class="iconMode" @click="changeMode"></i>
             <span class="text">{{ modeText }} ({{ songCount }}首)</span>
-            <span class="clear"><i class="icon-clear"></i></span>
+            <span class="clear" @click="showConfirm"
+              ><i class="icon-clear"></i
+            ></span>
           </h1>
         </div>
         <scroll ref="listContent" :data="sequenceList" class="list-content">
@@ -21,7 +23,7 @@
               >
                 <i class="current" :class="getCurrentIcon(item)"></i>
                 <span class="text">{{ item.name }} - {{ item.artist }}</span>
-                <span class="delete">
+                <span class="delete" @click.stop="deleteOne(item)">
                   <i class="icon-delete"></i>
                 </span>
               </li>
@@ -32,6 +34,12 @@
           <span>关闭</span>
         </div>
       </div>
+      <confirm
+        ref="confirm"
+        @confirm="confirmClear"
+        text="确定清空所有歌曲？"
+        confirmBtnText="确定"
+      ></confirm>
     </div>
   </transition>
 </template>
@@ -39,6 +47,7 @@
 <script>
 import { mapActions } from 'vuex'
 import Scroll from 'components/scroll/Scroll'
+import Confirm from 'components/confirm/Confirm'
 import { playerMixin } from 'utils/mixins'
 import { playMode } from 'utils/config'
 
@@ -71,11 +80,11 @@ export default {
       this.showFlag = false
     },
     showConfirm() {
-      // this.$refs.confirm.show()
+      this.$refs.confirm.show()
     },
     confirmClear() {
-      // this.deleteSongList()
-      // this.hide()
+      this.deleteSongList()
+      this.hide()
     },
     getCurrentIcon(item) {
       if (this.currentSong.id === item.id) {
@@ -104,19 +113,19 @@ export default {
       )
     },
     deleteOne(item) {
-      // this.deleteSong(item)
-      // if (!this.playlist.length) {
-      //   this.hide()
-      // }
+      this.deleteSong(item)
+      if (!this.playlist.length) {
+        this.hide()
+      }
     },
     addSong() {
       this.$refs.addSong.show()
     }
-    // ...mapActions(['deleteSong', 'deleteSongList'])
   },
   watch: {},
   components: {
-    Scroll
+    Scroll,
+    Confirm
   }
 }
 </script>
