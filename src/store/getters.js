@@ -45,5 +45,9 @@ export default {
 
   picUrl(state) {
     return state.picUrl
+  },
+
+  songCount(state) {
+    return state.playlist.length
   }
 }

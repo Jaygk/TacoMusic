@@ -11,5 +11,6 @@ export default {
   songUrl: null,
   recommendDetail: {},
   topList: {},
-  picUrl: null
+  picUrl: null,
+  songCount: 0
 }
