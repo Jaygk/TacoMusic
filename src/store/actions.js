@@ -112,11 +112,11 @@ export default {
     } else {
       commit(types.SET_PLAYLIST, playlist)
       commit(types.SET_SEQUENCE_LIST, sequenceList)
+      commit(types.SET_CURRENT_INDEX, currentIndex)
+      commit(types.SET_PLAYING_STATE, true)
       if (flag) {
         dispatch('setUrl', playlist[currentIndex].id)
         dispatch('setPicUrl', playlist[currentIndex].id)
-        commit(types.SET_CURRENT_INDEX, currentIndex)
-        commit(types.SET_PLAYING_STATE, true)
       }
     }
   },
