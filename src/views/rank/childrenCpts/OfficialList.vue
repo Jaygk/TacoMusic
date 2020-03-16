@@ -21,7 +21,7 @@
             v-for="(song, index) in item.songList"
             :key="song.first"
           >
-            <span>{{ index + 1 }}</span>
+            <span class="num">{{ index + 1 }}.</span>
             <span>{{ song.first }}-{{ song.second }}</span>
           </li>
         </ul>
@@ -96,4 +96,7 @@ export default {
       .song
         no-wrap()
         line-height: 26px
+        .num
+          font-weight: 800
+          margin-right: 5px
 </style>
