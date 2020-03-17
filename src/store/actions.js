@@ -12,7 +12,6 @@ function findIndex(list, song) {
 
 export default {
   async setPicUrl({ commit }, id) {
-    commit(types.SET_PIC_URL, null)
     const res = await getSongDetail(id)
     commit(types.SET_PIC_URL, res.songs[0].al.picUrl)
   },
