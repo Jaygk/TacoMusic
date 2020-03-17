@@ -76,7 +76,7 @@ export default {
     ])
   },
   watch: {
-    async currentSong(newVal) {
+    currentSong(newVal) {
       if (this.currentLyric) {
         this.currentLyric.stop()
         this.currentLyric = null
@@ -85,7 +85,10 @@ export default {
 
       if (!newVal.name) return
       
-      await this._getLyric(newVal.id)
+      clearTimeout(this.timer)
+      this.timer = setTimeout(async () => {
+        await this._getLyric(newVal.id)
+      }, 1000)
     },
     fullScreen(newVal) {
       if (newVal) {
@@ -101,6 +104,7 @@ export default {
   methods: {
     async _getLyric(id) {
       try {
+        if (this.currentSong.id !== id) return
         const res = await getLyric(id)
         if (!res.lrc) {
           this.currentLyric = null
