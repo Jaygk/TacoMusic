@@ -3,7 +3,8 @@ import request from './request'
 // 获取热搜列表
 export function getHotSearch() {
   return request({
-    url: '/search/hot/detail'
+    url: '/search/hot/detail',
+    withCredentials: true
   })
 }
 
@@ -15,14 +16,16 @@ export function search(keywords, limit, offset) {
       keywords,
       limit,
       offset
-    }
+    },
+    withCredentials: true
   })
 }
 
 // 默认搜索关键词
 export function getSearchDefault() {
   return request({
-    url: '/search/default'
+    url: '/search/default',
+    withCredentials: true
   })
 }
 
@@ -32,7 +35,8 @@ export function getSongDetail(ids) {
     url: '/song/detail',
     params: {
       ids
-    }
+    },
+    withCredentials: true
   })
 }
 

@@ -3,7 +3,8 @@ import request from './request'
 // 获取歌手列表
 export function getSingers() {
   return request({
-    url: '/toplist/artist'
+    url: '/toplist/artist',
+    withCredentials: true
   })
 }
 
@@ -50,7 +51,8 @@ export function getSingerDetail(id) {
     url: '/artist/top/song',
     params: {
       id
-    }
+    },
+    withCredentials: true
   })
 }
 

@@ -3,7 +3,8 @@ import request from './request'
 // 获取排行榜列表
 function getTopList() {
   return request({
-    url: '/toplist/detail'
+    url: '/toplist/detail',
+    withCredentials: true
   })
 }
 

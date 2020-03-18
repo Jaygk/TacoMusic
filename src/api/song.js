@@ -6,7 +6,8 @@ export function getSongUrl(id) {
     url: '/song/url',
     params: {
       id
-    }
+    },
+    withCredentials: true
   })
 }
 
@@ -16,6 +17,7 @@ export function getLyric(id) {
     url: '/lyric',
     params: {
       id
-    }
+    },
+    withCredentials: true
   })
 }

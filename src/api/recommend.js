@@ -6,7 +6,8 @@ export function getBanner() {
     url: '/banner',
     params: {
       type: 1
-    }
+    },
+    withCredentials: true
   })
 }
 
@@ -17,7 +18,8 @@ export function getHotList() {
     params: {
       limit: 30,
       order: 'hot'
-    }
+    },
+    withCredentials: true
   })
 }
 
@@ -27,7 +29,8 @@ export function getRecommendDetail(id) {
     url: '/playlist/detail',
     params: {
       id
-    }
+    },
+    withCredentials: true
   })
 }
 
