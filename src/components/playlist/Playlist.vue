@@ -189,7 +189,7 @@ export default {
             font-size: $font-size-medium
             color: $color-text-d
     .list-content
-      height: 400px
+      height: 360px
       overflow: hidden
       .item
         display: flex
