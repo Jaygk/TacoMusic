@@ -87,6 +87,7 @@ export default {
       
       clearTimeout(this.timer)
       this.timer = setTimeout(async () => {
+        this.$parent.$parent.$refs.audio.play()
         await this._getLyric(newVal.id)
       }, 1000)
     },
